@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    var messageingObject = <%-JSON.stringify(messageingObject, undefined, "\t");%>;
+    
+  </script>
+  <script src="js/mediaStreamRecorder.js"></script>
+  <script src="eventsClient.js"></script>
+  <script src="<%-messageingObject.messageingUrl%>/messageingClient.js"></script>
+  <style media="screen" type="text/css">
+    .voipDisplay_div .ptt_button{
+      width: 500px;
+      height: 100px;
+      font-size: 24pt;
+    }
+    .level_div{
+    width:100%;
+    height:20px;
+    background-color: #888;
+    }
+    .level_div .channel_div.channel0{
+        position: relative;
+        top:2px;
+        left:2px;
+        margin:0px;
+        padding:0px;
+        width:calc(100% - 4px);
+        height: calc(50% - 4px);
+        background-color: #000;
+    }
+    .level_div .channel_div.channel1{
+        position: relative;
+        top:6px;
+        left:2px;
+        margin:0px;
+        padding:0px;
+        width:calc(100% - 4px);
+        height: calc(50% - 4px);
+        background-color: #000;
+    }
+    .level_div .channel_div .currentLevel_div{
+        position: absolute;
+        top:1px;
+        left:1px;
+        margin:0px;
+        padding:0px;
+        width: calc(0% - 4px);
+        height: calc(100% - 2px);
+        background-color: #289428;
+    }
+    .level_div .channel_div .maxLevel_div{
+        position: absolute;
+        top: 0px;
+        left: 42px;
+        margin:0px;
+        padding:0px;
+        width: 4px;
+        height: 100%;
+        background-color: #ff0000;
+    }
+    .playbackAudioStack_div{
+      width:400px;
+      height:200px;
+      border: 1px solid #000;
+    }
+    .playbackAudioStack_div .audioBlobUrl_label{
+      display:block;
+    }
+    .playbackAudioStack_div .audioBlobUrl_label.active{
+      color:#fff;
+      background-color:#000;
+    }
+    .notes_div{
+      display: inline-block;
+      background-color: #ff0;
+      width: 400px;
+      position: absolute;
+      padding: 20px;
+    }
+  </style>
+</head>
+
+<body>
+    <div class="voipDisplay_div">
+        <div class = "sendSignal_div">
+          <label>Record Levels</label>
+        </div>
+        <button class= "ptt_button">Push to talk</button>
+        <div class = "notes_div">
+          <p>
+            Note: PPT (push to talk) is analogous to using a walkie-talkie. However, unlike a walkie-talkie, your partner cannot hear you while the button is held down. So in reality, the transmit-response latency consists of: 
+            <br>1) the length of time the message is recorded, 
+            <br>2) the time it takes for the message to be transmitted to your partner,
+            <br>3) the time it takes for your partner to listen to the message,
+            <br>4) the time it takes to your partner to record a response,
+            <br>5) the time it takes to transmit and for you to receive the response. 
+          </p>
+        </div><br>
+        <label class = "mode_label">Mode:continous</label><br>
+        <label>Default audio source</label><br>
+        <audio class = "testAudio" src = "nobodyHome.mp4" controls></audio>
+        <div class="playback_div" >
+          <label>Playback</label><br>
+          <div class = "playbackAudioStack_div">
+            
+          </div>
+          <label>Current playback audio:</label><br>
+          <audio class = "playback_audio" src = "nobodyHome.mp4" controls></audio>
+        </div>
+        
+        <div class = "info_div">
+          <label class = "info_label">Send Data:</label><br>
+          <label class = "info_label">info1</label><br>
+          <label class = "info_label">info2</label><br>
+          <label class = "info_label">info3</label><br>
+          <label class = "info_label">info4</label><br>
+          <label class = "info_label">info5</label><br>
+          <label class = "info_label">info6</label><br>
+          <label class = "info_label">info7</label><br>
+          <label class = "info_label">info8</label><br>
+          <label class = "info_label">info9</label><br><br>
+          <label class = "info_label">Receive data:</label><br>
+          <label class = "info_label">info11</label><br>
+          <label class = "info_label">info12</label><br>
+          <label class = "info_label">info13</label><br>
+          <label class = "info_label">info14</label><br>
+          <label class = "info_label">info15</label><br>
+          <label class = "info_label">info16</label><br>
+          <label class = "info_label">info17</label><br>
+          <label class = "info_label">info18</label><br>
+          <label class = "info_label">info19</label><br>
+          <label class = "info_label">info20</label><br>
+          <label class = "info_label">info21</label><br>
+          <label class = "info_label">info22</label><br>
+          <label class = "info_label">info23</label><br>
+          <label class = "info_label">info24</label><br>
+          <label class = "info_label">info25</label><br>
+          <label class = "info_label">info26</label><br>
+          <label class = "info_label">info27</label><br>
+          <label class = "info_label">info28</label><br>
+          <label class = "info_label">info29</label><br>
+          <label class = "info_label">info30</label><br>
+          <label class = "info_label">info31</label><br>
+          <label class = "info_label">info32</label><br>
+          <label class = "info_label">info33</label><br>
+          <label class = "info_label">info34</label><br>
+          <label class = "info_label">info35</label><br>
+          <label class = "info_label">info36</label><br>
+          <label class = "info_label">info37</label><br>
+          <label class = "info_label">info38</label><br>
+          <label class = "info_label">info39</label><br>
+          <label class = "info_label">info40</label><br>
+        </div>
+    </div>
+  <script>
+    var userData = <%-JSON.stringify(userData, undefined, "\t");%>;
+    var infoLabels = document.getElementsByClassName("info_label");
+    (function(){
+        function log(message){
+            console.log("------------    voipDemo - home.ejs    ------------\n"+message);
+        }
+        function addClassName(element, className){
+            var result = !hasClassName(element, className);
+            if (result) {
+                if (element.className !== "") {
+                    element.className += " "+className;
+                }else{
+                    element.className += className;
+                }
+            }
+            return result;
+        }
+        function removeClassName(element, className){
+            var classes = element.className.split(' ');
+            var classString = "", removed = false, prefix ="";
+            for(var i=0; i<classes.length; i++ ){
+                if (classes[i] != className) {
+                    classString += prefix+classes[i];
+                    prefix = " ";
+                }else{
+                    removed = true;
+                }
+            }
+            element.className = classString;
+            return removed;
+        }
+        function hasClassName(element, className) {
+            return (' ' + element.className + ' ').indexOf(' ' + className + ' ') > -1;
+        }
+        
+        function init(){
+          function sendAudioBuffer(blob){
+            function blobToBase64Callback(base64){
+              messageObject.data.audioBlob = base64;
+              infoLabels[1].innerHTML = "sent base64 audio blob string(length):"+messageObject.data.audioBlob.length;
+              messageing.send(messageObject);
+            }
+            log("sending buffer blob:"+blob.size+" clientPartner:"+clientPartner);
+            var
+              messageObject
+            ;
+              if(clientPartner){
+                messageObject = new messageing.send.MessageObject(
+                  "pttAudioBuffer",
+                  clientPartner,
+                  messageing.clientId,
+                  {
+                    dataType:"audioBlob"
+                  }
+                );
+                messageing.blobToBase64(blob,blobToBase64Callback );
+              }else{
+                log("clientPartner not set");
+              }
+          }
+          function setClientPartner(event){
+            log("setting clientPartner with event:\n"+event);
+            var
+              messageObject = event.data
+            ;
+            clientPartner = messageObject.data.clientPartner;
+            infoLabels[1].innerHTML = "clientPartner set:"+clientPartner;
+          }
+          function onPttAudioBuffer(event){
+            function base64ToBlobCallback(blob){
+              var
+                url = URL.createObjectURL(blob),
+                label = document.createElement("label")
+              ;
+              label.innerHTML = "blobSet "+ (playbackAudioStack_div.children.length+1);
+              label.className= "audioBlobUrl_label";
+              label.blobUrl = url;
+              label.onclick = function (){
+                playback_audio.src = this.blobUrl;
+                playback_audio.play();
+                for(var i=0; i<playbackAudioStack_div.children.length; i++ ){
+                  removeClassName(playbackAudioStack_div.children[i], "active");
+                }
+                addClassName(this, "active");
+              };
+              playbackAudioStack_div.appendChild(label);
+              infoLabels[12].innerHTML = "converted base64 to blob:"+blob;
+              if(playback_audio.state!= "playing"){
+                label.onclick();
+              }
+            }
+            var
+              messageObject = event.data
+            ;
+            infoLabels[11].innerHTML = "received audio blob string(length):"+messageObject.data.audioBlob.length;
+            messageing.base64ToBlob(messageObject.data.audioBlob, base64ToBlobCallback);
+            
+          }
+          var
+              voipDisplay_div = document.getElementsByClassName("voipDisplay_div")[0],
+              sendSignal_div = voipDisplay_div.getElementsByClassName("sendSignal_div")[0],
+              mediaStreamRecorder = new MediaStreamRecorder(),
+              mediaStreamLevelDiv = MediaStreamRecorder.getMediaStreamLevelDiv(),
+              ptt_button = document.getElementsByClassName("ptt_button")[0],
+              mode_label = document.getElementsByClassName("mode_label")[0],
+              mode = "continous",
+              mediaStream,
+              clientPartner,
+              playback_audio = document.getElementsByClassName("playback_audio")[0],
+              playbackAudioStack_div = document.getElementsByClassName("playbackAudioStack_div")[0]
+          ;
+          messageing.on("setClientPartner", setClientPartner );
+          messageing.on("pttAudioBuffer", onPttAudioBuffer );
+          Object.defineProperty(
+            mode_label,
+            "mode",
+            {
+              get:function(){return mode;},
+              set:function(value){
+                mode = value;
+                mode_label.innerHTML = "Mode:"+mode;
+              }
+            }
+          );
+          ptt_button.onmousedown = function(){
+            ptt_button.onmouseleave = function(){ptt_button.onmouseup();};
+            mode_label.mode = "push-to-talk";
+            mediaStreamRecorder.stream = mediaStream;
+            mediaStreamRecorder.startRecording();
+          };
+          ptt_button.onmouseup = function(){
+              ptt_button.onmouseleave = undefined;
+              mediaStreamRecorder.stopRecording(sendAudioBuffer);
+          };
+          sendSignal_div.appendChild(mediaStreamLevelDiv);
+          MediaStreamRecorder.getMicrophoneStream(
+            function(error, stream){
+              if(error){
+                var  audio = document.getElementsByClassName("testAudio")[0];
+                audio.onplay = function(){
+                  if(audio.captureStream){
+                      stream = audio.captureStream();
+                  }else if(audio.mozCaptureStream){
+                      stream = audio.mozCaptureStream();
+                  }else{
+                      alert("capture stream not available!!!!!");
+                      throw "capture stream not available!!!!!";
+                  }
+                  mediaStreamLevelDiv.mediaStream = stream;
+                  mediaStreamRecorder.mediaStream = stream;
+                };
+                audio.play();
+              }else{
+                mediaStreamLevelDiv.mediaStream = stream;
+                mediaStreamRecorder.mediaStream = stream;
+              }
+            }
+          );
+        }
+        window.onload = init();    
+    })();
+  </script>
+</body>
+</html>
