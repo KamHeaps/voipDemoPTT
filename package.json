@@ -1,0 +1,21 @@
+{
+  "name": "voipdemo_ptt",
+  "version": "1.0.0",
+  "description": "voip demo push to talk",
+  "main": "app.js",
+    "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "voip",
+    "demo",
+    "push",
+    "to",
+    "talk"
+  ],
+  "author": "nuf",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.3"
+  }
+}
